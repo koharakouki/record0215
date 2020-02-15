@@ -1,0 +1,33 @@
+<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+<h1><strong>Editing Book</strong></h1>
+
+
+<%= form_for(@book) do |f| %>
+<% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h6 class="edit-text">Title</h6>
+<%= f.text_field :title, {class: "edit-text-box"} %>
+
+<h6 class="edit-text">Body</h6>
+<%= f.text_area :body, {class: "edit-text-box"} %>
+
+<%= f.submit 'Update Book' %>
+
+<%= link_to 'Show', book_path(@book.id), {class: "nav-link"} %>
+<span>|</span>
+<%= link_to 'Back', books_path(@books), {class: "nav-link"} %>
+
+<% end %>
